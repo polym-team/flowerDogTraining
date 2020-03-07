@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "watch-http-server ./src"
   },
-  "author": "",
+  "author": "bekryoung <bekryoung@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^4.4.1",
     "watch-http-server": "^0.7.6"
-  }
+  },
+  "repository": "https://github.com/polym-team/flowerDogTraining.git"
 }
