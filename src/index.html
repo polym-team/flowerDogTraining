@@ -44,15 +44,15 @@
             el = document.getElementById('content');
             var url = location.hash.slice(1);
             if (!url || url === '/') {
-                htmlLoad('loginForm.html')
+                htmlLoad('loginForm.html');
             } else {
                 switch (url) {
                     case '/todo':
-                        htmlLoad('todo.html')
+                        htmlLoad('todo.html');
                         break;
                     default:
-                        alert ('Page dosen\'t exist.')
-                        htmlLoad('loginForm.html')
+                        alert ('Page dosen\'t exist.');
+                        htmlLoad('loginForm.html');
                         break;
                 }
             }
@@ -62,7 +62,6 @@
     <script type="text/javascript">
         routing();
     </script>
-
 </body>
 
 </html>
