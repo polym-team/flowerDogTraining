@@ -1,67 +1,71 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
 
     <title>To-Do list ver.2</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="./loginForm.js"></script>
+    <script src="./todo.js"></script>
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <header id="mainHeader">
-        <a href="#"><button id="toIndex" class="btn btn-dark">index</button></a>
-        <a href="#/todo"><button id="toTodo" class="btn btn-dark">Todo</button></a>
+      <a href="#"><button id="toIndex" class="btn btn-dark">index</button></a>
+      <a href="#/todo"
+        ><button id="toTodo" class="btn btn-dark">Todo</button></a
+      >
     </header>
     <div id="content"></div>
 
     <script type="text/javascript">
-        function htmlLoad(htmlSrc) {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (this.readyState === 4) {
-                    if (this.status === 200) {
-                        el.innerHTML = this.responseText;
-                    }
-                    if (this.status === 404) {
-                        el.innerHTML = "Page not found.";
-                    }
-                }
-            };
-            xhr.open("GET", htmlSrc, true);
-            xhr.send();
-        }
-
-
-        var el;
-        window.addEventListener('hashchange', routing)
-        function routing() {
-            el = document.getElementById('content');
-            var url = location.hash.slice(1);
-            if (!url || url === '/') {
-                htmlLoad('loginForm.html');
-            } else {
-                switch (url) {
-                    case '/todo':
-                        htmlLoad('todo.html');
-                        break;
-                    default:
-                        alert ('Page dosen\'t exist.');
-                        htmlLoad('loginForm.html');
-                        break;
-                }
+      function htmlLoad(htmlSrc) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+          if (this.readyState === 4) {
+            if (this.status === 200) {
+              el.innerHTML = this.responseText;
+              onInitTodoPage();
+              onInitLoginPage();
             }
+            if (this.status === 404) {
+              el.innerHTML = 'Page not found.';
+            }
+          }
         };
+        xhr.open('GET', htmlSrc, true);
+        xhr.send();
+      }
+
+      var el;
+      window.addEventListener('hashchange', routing);
+      function routing() {
+        el = document.getElementById('content');
+        var url = location.hash.slice(1);
+        if (!url || url === '/') {
+          htmlLoad('loginForm.html');
+        } else {
+          switch (url) {
+            case '/todo':
+              htmlLoad('todo.html');
+              break;
+            default:
+              alert("Page dosen't exist.");
+              htmlLoad('loginForm.html');
+              break;
+          }
+        }
+      }
     </script>
 
     <script type="text/javascript">
-        routing();
+      routing();
     </script>
-</body>
-
+  </body>
 </html>
