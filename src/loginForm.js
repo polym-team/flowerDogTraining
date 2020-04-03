@@ -11,6 +11,7 @@ function onInitLoginPage() {
         alert(`ID : ${addressInput.value}\nPW : ${passwordInput.value}`);
         addressInput.value = '';
         passwordInput.value = '';
+        location.hash = '#/todo';
       } else {
         alert('Type your Password');
         passwordInput.focus();
