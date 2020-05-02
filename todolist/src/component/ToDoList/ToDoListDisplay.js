@@ -8,12 +8,11 @@ class ToDoListDisplay extends Component {
     }
 
     render() {
-        console.log(this.props);
 
         const { data } = this.props;
 
         const list = data.map(
-            info => (<ToDoInfo key={info.id} info={info} />)
+            info => (<ToDoInfo key={info.doingId} info={info} />)
         );
 
         return (

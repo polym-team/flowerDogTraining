@@ -4,8 +4,9 @@ class ToDoInfo extends Component {
 
     static defaultProps = {
         info: {
-            id: 0,
+            doingId: 0,
             doing: '',
+            userId: 'error',
     }
     }
 
@@ -17,13 +18,14 @@ class ToDoInfo extends Component {
         };
 
         const {
-            id, doing
+            doingId, doing, userId
         } = this.props.info;
 
         return (
             <div style={style}>
-                <p>id: {id}</p>
+                <p>id: {doingId}</p>
                 <p>doing: {doing}</p>
+                <p>userId: {userId}</p>
             </div>
         );
     }

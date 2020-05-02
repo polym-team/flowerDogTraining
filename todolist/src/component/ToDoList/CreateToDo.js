@@ -33,7 +33,6 @@ class CreateToDo extends Component {
                     onChange={this.ToDoListUp}
                 />
                 <button type="submit">update</button>
-                <div>{this.state.doing}</div>
             </form>
         );
     }

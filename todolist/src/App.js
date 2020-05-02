@@ -1,32 +1,39 @@
 import React, { Component } from 'react';
-import CreateToDo from './component/CreateToDo';
-import ToDoListDisplay from './component/ToDoListDisplay'
+import ToDoListPage from './component/ToDoList/ToDoListPage';
+import Login from './component/Login/Login'
 
 class App extends Component {
 
-  id = 0
-
   state = {
-    information: []
+    loginId: '',
   }
 
-  handleCreate = (data) => {
-    const { information } = this.state;
+  loginStateUpdate = (idUpdate) => {
     this.setState({
-      information: information.concat({ id: this.id++, ...data })
-    })
+      loginId: idUpdate
+    });
   }
 
   render() {
-    const { information } = this.state;
-    return (
-      <div>
-        <CreateToDo
-          onCreate={this.handleCreate}
-        />
-        <ToDoListDisplay data={this.state.information} />
-      </div>
-    );
+    if (this.state.loginId) {
+      return (
+        <div>
+          <ToDoListPage
+          loginId={this.state.loginId}
+          logout={this.loginStateUpdate}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Login
+            onLogin={this.loginStateUpdate}
+          />
+          test id, pw are 'ddd'
+        </div>
+      )
+    }
   }
 
 }
