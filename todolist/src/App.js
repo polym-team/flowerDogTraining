@@ -19,8 +19,8 @@ class App extends Component {
       return (
         <div>
           <ToDoListPage
-          loginId={this.state.loginId}
-          logout={this.loginStateUpdate}
+            loginId={this.state.loginId}
+            logout={this.loginStateUpdate}
           />
         </div>
       );
@@ -30,7 +30,14 @@ class App extends Component {
           <Login
             onLogin={this.loginStateUpdate}
           />
-          test id, pw are 'ddd'
+          <div
+            style={{
+              margin: '10px'
+            }}>
+            admin/admin<br />
+            A/1234<br />
+            b/1111
+          </div>
         </div>
       )
     }

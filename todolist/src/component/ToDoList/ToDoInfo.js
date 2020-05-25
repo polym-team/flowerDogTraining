@@ -7,25 +7,37 @@ class ToDoInfo extends Component {
             doingId: 0,
             doing: '',
             userId: 'error',
+            doingStatus: 'error',
+        }
     }
+
+    handleDelete = () => {
+        const { info, onRemove } = this.props;
+        onRemove(info.doingId);
+    }
+
+    handleEdit = () => {
+        const { info, onEdit } = this.props;
+        onEdit(info.doingId, info.doing);
     }
 
     render() {
         const style = {
             border: '1px solid black',
-            padding: '8px',
-            margin: '8px'
+            padding: '5px',
+            margin: '5px'
         };
 
         const {
-            doingId, doing, userId
+            doingId, doing, userId, doingStatus
         } = this.props.info;
 
         return (
             <div style={style}>
-                <p>id: {doingId}</p>
-                <p>doing: {doing}</p>
-                <p>userId: {userId}</p>
+                <input type="checkbox"></input>
+                {doingId} | {doing} | {userId} | {doingStatus}
+                <button onClick={this.handleDelete}>Del</button>
+                <button onClick={this.handleEdit}>Edit</button>
             </div>
         );
     }

@@ -9,10 +9,21 @@ class ToDoListDisplay extends Component {
 
     render() {
 
-        const { data } = this.props;
+        const { data, onRemove, onEdit, loginId } = this.props;
 
-        const list = data.map(
-            info => (<ToDoInfo key={info.doingId} info={info} />)
+        const filteredData = (loginId === 'admin'
+            ? data
+            : data.filter(info => info.doingStatus === null && info.userId === loginId)
+        )
+
+        const list = filteredData.map(
+            info => (
+                <ToDoInfo
+                    key={info.doingId}
+                    info={info}
+                    onRemove={onRemove}
+                    onEdit={onEdit}
+                />)
         );
 
         return (

@@ -14,7 +14,11 @@ class CreateToDo extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.onCreate(this.state);
+        if (!this.state.doing) {
+            alert('Wrong input')
+        } else {
+            this.props.onCreate(this.state);
+        }
 
         this.setState(
             {
