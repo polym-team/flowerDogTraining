@@ -4,33 +4,23 @@ import ToDoListDisplay from './ToDoListDisplay'
 
 class ToDoListPage extends Component {
 
-  doingId = 3
+  loadInfo = JSON.parse(window.localStorage.getItem('toDoList'));
+
+  loadId = JSON.parse(window.localStorage.getItem('doingId'));
+
+  doingId = (this.loadId ? this.loadId : 0)
 
   loginId = this.props.loginId
 
-  deleteDoing = <span style={{ color: "red" }}>deleted</span>
-
   state = {
-    information: [
-      {
-        doingId: 0,
-        doing: 'test1',
-        userId: 'A',
-        doingStatus: null,
-      },
-      {
-        doingId: 1,
-        doing: 'test2',
-        userId: 'b',
-        doingStatus: null,
-      },
-      {
-        doingId: 2,
-        doing: this.deleteDoing,
-        userId: 'A',
-        doingStatus: 'deleted',
-      }
-    ]
+    information: (this.loadInfo ? this.loadInfo : [])
+  }
+
+  doingSave = () => {
+    const { doingId } = this;
+    const { information } = this.state;
+    window.localStorage.setItem('doingId', JSON.stringify(doingId));
+    window.localStorage.setItem('toDoList', JSON.stringify(information));
   }
 
   handleCreate = (data) => {
@@ -42,8 +32,7 @@ class ToDoListPage extends Component {
         userId: this.loginId,
         doingStatus: null,
       })
-    })
-    console.log(this.state.information)
+    });
   }
 
   handleRemove = (doingId) => {
@@ -51,10 +40,10 @@ class ToDoListPage extends Component {
     this.setState({
       information: information.map(
         info => doingId === info.doingId
-          ? { ...info, doing: this.deleteDoing, doingStatus: 'deleted' }
+          ? { ...info, doing: null, doingStatus: 'deleted' }
           : info
       )
-    })
+    });
   }
 
   handleEdit = (doingId, doing) => {
@@ -74,10 +63,20 @@ class ToDoListPage extends Component {
   }
 
   handleLogout = () => {
-    this.props.logout('');
+    this.props.logout(null);
+  }
+
+  handleClear = () => {
+    this.doingId = 0;
+    this.setState ({
+      information: []
+    });
   }
 
   render() {
+
+    this.doingSave();
+
     const { information } = this.state;
 
     return (
@@ -90,6 +89,7 @@ class ToDoListPage extends Component {
             {this.props.loginId}
           </span>.
           <button onClick={this.handleLogout}>logout</button>
+          <button onClick={this.handleClear}>clear!</button>
         </div>
         <CreateToDo
           onCreate={this.handleCreate}
