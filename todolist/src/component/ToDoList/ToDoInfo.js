@@ -8,7 +8,11 @@ class ToDoInfo extends Component {
             doing: '',
             userId: 'error',
             doingStatus: 'error',
-        }
+        },
+    }
+
+    state = {
+        checkState: false,
     }
 
     handleDelete = () => {
@@ -19,6 +23,13 @@ class ToDoInfo extends Component {
     handleEdit = () => {
         const { info, onEdit } = this.props;
         onEdit(info.doingId, info.doing);
+    }
+
+    handleCheck = () => {
+        this.setState({
+            checkState: !this.state.checkState
+        })
+        console.log(this.state.checkState)
     }
 
     render() {
@@ -35,7 +46,10 @@ class ToDoInfo extends Component {
 
         return (
             <div style={style}>
-                <input type="checkbox"></input>
+                <input
+                    type="checkbox"
+                    onChange={this.handleCheck}>
+                </input>
                 {doingId} | {doing} | {userId} | {doingStatus}
                 <button onClick={this.handleDelete}>Del</button>
                 <button onClick={this.handleEdit}>Edit</button>
