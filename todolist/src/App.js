@@ -32,14 +32,11 @@ class App extends Component {
           />
           <div
             style={{
-              width: '100pt',
-              border: 'solid black 1px',
-              margin: '10px',
-              padding: '5px',
+              margin: '10px'
             }}>
-            admin / admin<br />
-            A / 1234<br />
-            b / 1111
+            admin/admin<br />
+            A/1234<br />
+            b/1111
           </div>
         </div>
       )

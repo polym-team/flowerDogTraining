@@ -86,7 +86,7 @@ class Login extends Component {
                         position: 'relative',
                     }}>
 
-                    <label htmlFor="ID"
+                    <label for="ID"
                         style={{
                             margin: '0 0 12px',
                             display: 'block',
@@ -118,7 +118,7 @@ class Login extends Component {
                         position: 'relative',
                     }}>
 
-                    <label htmlFor="password"
+                    <label for="password"
                         style={{
                             margin: '0 0 12px',
                             display: 'block',
